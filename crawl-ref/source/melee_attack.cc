@@ -3202,7 +3202,7 @@ void melee_attack::do_spines()
                         wudzu_spine = 1;
                 if (you.props["wudzu_cloak_picked"].get_int() == 1
                         && have_passive(passive_t::thorn_regalia))
-						wudzu_spine = 3;
+						wudzu_spine = 2;
 
         const int mut = (you.form == TRAN_PORCUPINE) ? 3
                         : min(3,player_mutation_level(MUT_SPINY)+wudzu_spine);

@@ -625,9 +625,9 @@ static const ability_def Ability_List[] =
         0, 0, 0, 0, {FAIL_INVO}, abflag::INSTANT },
 
         //Wudzu
-        { ABIL_WUDZU_SUMMON_VINES, "Summon Vines",
-        5, 0, 200, 3, {FAIL_INVO, 60, 5, 20}, abflag::NONE },
         { ABIL_WUDZU_BRIAR_PATCH, "Briar Patch",
+        5, 0, 200, 3, {FAIL_INVO, 60, 5, 20}, abflag::NONE },
+        { ABIL_WUDZU_SUMMON_VINES, "Summon Vines",
         7, 0, 300, 6, {FAIL_INVO, 70, 4, 25}, abflag::NONE },
         { ABIL_WUDZU_VESTMENT_GLOVES, "Vestment of Thorns - Hands",
         0, 0, 0, 0, {FAIL_INVO}, abflag::NONE },
