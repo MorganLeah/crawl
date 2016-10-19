@@ -431,9 +431,7 @@ void check_net_will_hold_monster(monster* mons)
 static bool _player_caught_in_web()
 {
     if (you.attribute[ATTR_HELD] ||
-          ((you.props["wudzu_cloak_picked_v"].get_int() == 1
-          && have_passive(passive_t::thorn_vestment))
-          || (you.props["wudzu_cloak_picked_r"].get_int() == 1
+          ((you.props["wudzu_cloak_picked"].get_int() == 1
           && have_passive(passive_t::thorn_regalia))))
         return false;
 
@@ -801,10 +799,8 @@ void trap_def::trigger(actor& triggerer)
                 simple_monster_message(*m, " tears through a web.");
             break;
         }
-        if ((you.props["wudzu_cloak_picked_v"].get_int() == 1
-              && have_passive(passive_t::thorn_vestment))
-              || (you.props["wudzu_cloak_picked_r"].get_int() == 1
-              && have_passive(passive_t::thorn_regalia)))
+        if (you.props["wudzu_cloak_picked"].get_int() == 1
+              && have_passive(passive_t::thorn_regalia))
                 {
             trap_destroyed = true;
             if (you_trigger)
@@ -1177,10 +1173,8 @@ void free_self_from_net()
         _free_self_from_web();
         return;
     }
-    if ((you.props["wudzu_cloak_picked_v"].get_int() == 1
-          && have_passive(passive_t::thorn_vestment))
-          || (you.props["wudzu_cloak_picked_r"].get_int() == 1
-          && have_passive(passive_t::thorn_regalia)))
+    if (you.props["wudzu_cloak_picked"].get_int() == 1
+          && have_passive(passive_t::thorn_regalia))
         {
                 mprf("Your thorns tear through the net.");
                 destroy_item(net);

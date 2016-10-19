@@ -3583,10 +3583,8 @@ bool player::clarity(bool calc_unid, bool items) const
         return true;
 
         //if have wudzu head slot taken
-    if ((you.props["wudzu_hat_picked_v"].get_int() == 1
-          && have_passive(passive_t::thorn_vestment))
-          || (you.props["wudzu_hat_picked_r"].get_int() == 1
-          && have_passive(passive_t::thorn_regalia)))
+    if (you.props["wudzu_hat_picked"].get_int() == 1
+          && have_passive(passive_t::thorn_regalia))
                 return true;
 
     return actor::clarity(calc_unid, items);

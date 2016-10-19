@@ -915,10 +915,8 @@ static void _describe_god_powers(god_type which_god)
     case GOD_WUDZU:
     {
         have_any = true;
-		if (((you.props["wudzu_cloak_picked_v"].get_int() == 0
+		if ((you.props["wudzu_cloak_picked"].get_int() == 0
 			|| !have_passive(passive_t::thorn_vestment))
-			&& (you.props["wudzu_cloak_picked_r"].get_int() == 0
-			|| !have_passive(passive_t::thorn_regalia)))
 			&& have_passive(passive_t::spiny_thorns))
 			cprintf("Your body is coated in thorny armour (+%d AC, spiny 1).\n",
 				wudzu_body_ac_boost(you.piety));
@@ -926,26 +924,20 @@ static void _describe_god_powers(god_type which_god)
 			cprintf("Your body is coated in thorny armour (+%d AC).\n",
 				wudzu_body_ac_boost(you.piety));
 
-		if ((you.props["wudzu_cloak_picked_v"].get_int() == 1
-		  && have_passive(passive_t::thorn_vestment))
-		  || (you.props["wudzu_cloak_picked_r"].get_int() == 1
-		  && have_passive(passive_t::thorn_regalia)))
-			cprintf("Your %s coated in thorns (Spiny 3).\n",
+		if (you.props["wudzu_cloak_picked"].get_int() == 1
+		  && have_passive(passive_t::thorn_regalia))
+			cprintf("Your %s coated in thorns (+%d AC, spiny 3).\n",
 				(you.species!=SP_OCTOPODE ? "shoulders are" : "mantle is"),
 				wudzu_cloak_ac_boost(you.piety));
 
-		if ((you.props["wudzu_hat_picked_v"].get_int() == 1
-		  && have_passive(passive_t::thorn_vestment))
-		  || (you.props["wudzu_hat_picked_r"].get_int() == 1
+		if ((you.props["wudzu_hat_picked"].get_int() == 1
 		  && have_passive(passive_t::thorn_regalia)))
-			cprintf("Your head is coated in thorns.\n",
+			cprintf("Your head is coated in thorns (+%d AC).\n",
 				wudzu_hat_ac_boost(you.piety));
 
-		if ((you.props["wudzu_gloves_picked_v"].get_int() == 1
+		if (you.props["wudzu_gloves_picked"].get_int() == 1
 		  && have_passive(passive_t::thorn_vestment))
-		  || (you.props["wudzu_gloves_picked_r"].get_int() == 1
-		  && have_passive(passive_t::thorn_regalia)))
-			cprintf("%sare coated in thorns.\n",
+			cprintf("%sare coated in thorns (+%d AC).\n",
 				(you.species!=SP_OCTOPODE ? you.hands_act("", "").c_str()
 				: "Your front tentacles "),wudzu_gloves_ac_boost(you.piety));
 
@@ -959,11 +951,9 @@ static void _describe_god_powers(god_type which_god)
 		else
 			lower_body=you.foot_name(true).c_str();
 
-		if ((you.props["wudzu_boots_picked_v"].get_int() == 1
-		  && have_passive(passive_t::thorn_vestment))
-		  || (you.props["wudzu_boots_picked_r"].get_int() == 1
-		  && have_passive(passive_t::thorn_regalia)))
-			cprintf("Your %s %s coated in thorns.\n",
+		if ((you.props["wudzu_boots_picked"].get_int() == 1
+		  && have_passive(passive_t::thorn_vestment)))
+			cprintf("Your %s %s coated in thorns (+%d AC).\n",
 				lower_body.c_str(), ((you.species==SP_NAGA ||
 				you.species==SP_CENTAUR || you.fishtail)
 				? "is" : "are"),wudzu_boots_ac_boost(you.piety));
@@ -984,62 +974,6 @@ static void _describe_god_powers(god_type which_god)
         {
             continue;
         }
-
-		if (you.props["vest1"].get_int() == 1 || you.props["vest2"].get_int() == 1 || !you_worship(GOD_WUDZU))
-		{
-			if (power.abil == ABIL_WUDZU_VESTMENT_HAT)
-				continue;
-			if (power.abil == ABIL_WUDZU_VESTMENT_GLOVES)
-				continue;
-			if (power.abil == ABIL_WUDZU_VESTMENT_BOOTS)
-				continue;
-		}
-		else if (you.props["vest1"].get_int() == 2 || you.props["vest2"].get_int() == 2)
-		{
-			if (power.abil == ABIL_WUDZU_VESTMENT_CLOAK)
-				continue;
-			if (power.abil == ABIL_WUDZU_VESTMENT_GLOVES)
-				continue;
-			if (power.abil == ABIL_WUDZU_VESTMENT_BOOTS)
-				continue;
-		}
-		else if (you.props["vest1"].get_int() == 3 || you.props["vest2"].get_int() == 3)
-		{
-			if (power.abil == ABIL_WUDZU_VESTMENT_CLOAK)
-				continue;
-			if (power.abil == ABIL_WUDZU_VESTMENT_HAT)
-				continue;
-			if (power.abil == ABIL_WUDZU_VESTMENT_BOOTS)
-				continue;
-		}
-
-		if (you.props["reg1"].get_int() == 1 || you.props["reg2"].get_int() == 1 || !you_worship(GOD_WUDZU))
-		{
-			if (power.abil == ABIL_WUDZU_REGALIA_HAT)
-				continue;
-			if (power.abil == ABIL_WUDZU_REGALIA_GLOVES)
-				continue;
-			if (power.abil == ABIL_WUDZU_REGALIA_BOOTS)
-				continue;
-		}
-		else if (you.props["reg1"].get_int() == 2 || you.props["reg2"].get_int() == 2)
-		{
-			if (power.abil == ABIL_WUDZU_REGALIA_CLOAK)
-				continue;
-			if (power.abil == ABIL_WUDZU_REGALIA_GLOVES)
-				continue;
-			if (power.abil == ABIL_WUDZU_REGALIA_BOOTS)
-				continue;
-		}
-		else if (you.props["reg1"].get_int() == 3 || you.props["reg2"].get_int() == 3)
-		{
-			if (power.abil == ABIL_WUDZU_REGALIA_CLOAK)
-				continue;
-			if (power.abil == ABIL_WUDZU_REGALIA_HAT)
-				continue;
-			if (power.abil == ABIL_WUDZU_REGALIA_BOOTS)
-				continue;
-		}
 
         have_any = true;
 

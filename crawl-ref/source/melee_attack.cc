@@ -287,11 +287,7 @@ bool melee_attack::handle_phase_dodged()
         }
         else if (defender->is_player()
                     && (
-                        you.props["wudzu_hat_picked_v"].get_int() == 1
-                        && have_passive(passive_t::thorn_vestment)
-                    )
-                    || (
-                        you.props["wudzu_hat_picked_r"].get_int() == 1
+                        you.props["wudzu_hat_picked"].get_int() == 1
                         && have_passive(passive_t::thorn_regalia)
                     ))
         {
@@ -481,10 +477,8 @@ bool melee_attack::handle_phase_hit()
 
     if (attacker->is_player())
     {
-                if ((you.props["wudzu_gloves_picked_v"].get_int() == 1
+                if (you.props["wudzu_gloves_picked"].get_int() == 1
               && have_passive(passive_t::thorn_vestment))
-              || (you.props["wudzu_gloves_picked_r"].get_int() == 1
-              && have_passive(passive_t::thorn_regalia)))
             {
                 if (coinflip())
                         poison_monster(defender->as_monster(), &you);
@@ -3206,10 +3200,8 @@ void melee_attack::do_spines()
                 int wudzu_spine = 0;
                 if (have_passive(passive_t::spiny_thorns))
                         wudzu_spine = 1;
-                if ((you.props["wudzu_cloak_picked_v"].get_int() == 1
-                        && have_passive(passive_t::thorn_vestment))
-                        || (you.props["wudzu_cloak_picked_r"].get_int() == 1
-                        && have_passive(passive_t::thorn_regalia)))
+                if (you.props["wudzu_cloak_picked"].get_int() == 1
+                        && have_passive(passive_t::thorn_regalia))
 						wudzu_spine = 3;
 
         const int mut = (you.form == TRAN_PORCUPINE) ? 3
