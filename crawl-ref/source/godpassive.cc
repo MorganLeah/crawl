@@ -1505,7 +1505,13 @@ int wudzu_body_ac_boost(int piety)
         // smaller AC bonus if you can't wear body armour already
         if (species_is_draconian(you.species) || you.species == SP_OCTOPODE
           || you.species == SP_FELID || you.species == SP_SPRIGGAN
-          || you.species == SP_OGRE || you.species == SP_TROLL)
+          || you.species == SP_OGRE || you.species == SP_TROLL
+		  || you.form == TRAN_ICE_BEAST || you.form == TRAN_SPIDER 
+		  || you.form == TRAN_STATUE || you.form == TRAN_DRAGON 
+		  || you.form == TRAN_BAT || you.form == TRAN_PIG 
+		  || you.form == TRAN_TREE || you.form == TRAN_PORCUPINE 
+		  || you.form == TRAN_WISP || you.form == TRAN_FUNGUS 
+		  || you.form == TRAN_HYDRA)
                 return max(3, 2 + min(piety, piety_breakpoint(5)) / 32);
         else
                 return max(6, 4 + min(piety, piety_breakpoint(5)) / 16);
@@ -1518,7 +1524,12 @@ int wudzu_cloak_ac_boost(int piety)
           you.props["wudzu_cloak_picked"].get_int() == 1)
         {
                 // smaller AC bonus if you can't use the cloak slot
-                if (you.species == SP_OCTOPODE || you.species == SP_FELID)
+                if (you.species == SP_OCTOPODE || you.species == SP_FELID
+					|| you.form == TRAN_ICE_BEAST || you.form == TRAN_SPIDER 
+					|| you.form == TRAN_DRAGON || you.form == TRAN_HYDRA
+					|| you.form == TRAN_BAT || you.form == TRAN_PIG 
+					|| you.form == TRAN_TREE || you.form == TRAN_PORCUPINE 
+					|| you.form == TRAN_WISP || you.form == TRAN_FUNGUS)
                         return 1;
                 else
                         return 3;
@@ -1536,7 +1547,12 @@ int wudzu_hat_ac_boost(int piety)
                 // smaller AC bonus if you can't use the hat slot
                 if (you.species == SP_FELID ||
                 player_mutation_level(MUT_ANTENNAE, false) == 3 ||
-                player_mutation_level(MUT_HORNS, false) == 3)
+                player_mutation_level(MUT_HORNS, false) == 3
+				|| you.form == TRAN_ICE_BEAST || you.form == TRAN_SPIDER 
+				|| you.form == TRAN_DRAGON || you.form == TRAN_HYDRA
+				|| you.form == TRAN_BAT || you.form == TRAN_PIG 
+				|| you.form == TRAN_TREE || you.form == TRAN_PORCUPINE 
+				|| you.form == TRAN_WISP)
                         return 1;
                 else
                         return 3;
@@ -1553,7 +1569,13 @@ int wudzu_gloves_ac_boost(int piety)
                 // smaller AC bonus if you can't use the gloves slot
                 if (you.species == SP_FELID || you.species == SP_SPRIGGAN ||
                 you.species == SP_OGRE || you.species == SP_OCTOPODE ||
-                player_mutation_level(MUT_CLAWS, false) == 3)
+                player_mutation_level(MUT_CLAWS, false) == 3
+				|| you.form == TRAN_ICE_BEAST || you.form == TRAN_SPIDER 
+				|| you.form == TRAN_STATUE || you.form == TRAN_DRAGON 
+				|| you.form == TRAN_BAT || you.form == TRAN_PIG 
+				|| you.form == TRAN_TREE || you.form == TRAN_PORCUPINE 
+				|| you.form == TRAN_WISP || you.form == TRAN_FUNGUS 
+				|| you.form == TRAN_HYDRA)
                         return 1;
                 else
                         return 3;
@@ -1572,11 +1594,26 @@ int wudzu_boots_ac_boost(int piety)
                 you.species==SP_OGRE || you.species==SP_OCTOPODE ||
                 you.species==SP_TROLL || (player_mutation_level(MUT_HOOVES, false)
                 ==3 && you.species!=SP_CENTAUR) ||
-                player_mutation_level(MUT_TALONS,false) == 3)
+                player_mutation_level(MUT_TALONS,false) == 3
+				|| you.form == TRAN_ICE_BEAST || you.form == TRAN_SPIDER 
+				|| you.form == TRAN_STATUE || you.form == TRAN_DRAGON 
+				|| you.form == TRAN_BAT || you.form == TRAN_PIG 
+				|| you.form == TRAN_TREE || you.form == TRAN_PORCUPINE 
+				|| you.form == TRAN_WISP || you.form == TRAN_FUNGUS 
+				|| you.form == TRAN_HYDRA)
                         return 1;
                 else
                         return 3;
         }
         else
                 return 0;
+}
+
+int wudzu_cloak_sh_boost(int piety)
+{
+	if (have_passive(passive_t::thorn_regalia) &&
+		you.props["wudzu_cloak_picked"].get_int() == 1)
+		return 8;
+	else
+		return 0;
 }

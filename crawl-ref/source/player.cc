@@ -2402,6 +2402,7 @@ int player_shield_class()
     shield += _bone_armour_bonus() * 2;
     shield += you.wearing(EQ_AMULET_PLUS, AMU_REFLECTION) * 200;
     shield += you.scan_artefacts(ARTP_SHIELDING) * 200;
+	shield += wudzu_cloak_sh_boost() * 100;
 
     return (shield + 50) / 100;
 }

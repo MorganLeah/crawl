@@ -305,5 +305,6 @@ int wudzu_cloak_ac_boost(int piety = you.piety);
 int wudzu_hat_ac_boost(int piety = you.piety);
 int wudzu_gloves_ac_boost(int piety = you.piety);
 int wudzu_boots_ac_boost(int piety = you.piety);
+int wudzu_cloak_sh_boost(int piety = you.piety);
 
 #endif
